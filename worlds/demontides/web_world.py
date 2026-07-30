@@ -1,7 +1,6 @@
 from BaseClasses import Tutorial
 from worlds.AutoWorld import WebWorld
 
-from .options import option_groups, option_presets
 
 
 class DemonTidesWebWorld(WebWorld):
@@ -14,11 +13,8 @@ class DemonTidesWebWorld(WebWorld):
         "A guide to setting up Demon Tides for MultiWorld.",
         "English",
         "setup.md",
-        "setup/en",
+        "setup",
         ["RobertSPratley", "Maya", "Trev"],
     )
 
     tutorials = [setup]
-
-    option_groups = option_groups
-    options_presets = option_presets

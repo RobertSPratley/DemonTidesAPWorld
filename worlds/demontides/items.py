@@ -10,8 +10,6 @@ if TYPE_CHECKING:
 PROGRESSION_NAME_TO_ID = {
     "Bat Form": 1,
     "Boost": 2,
-    "Checkpoint": 3,
-    "Item Arrow": 4,
     "Snake Form": 5,
     "Spin Form": 6,
     "Golden Gear": 7
@@ -19,7 +17,9 @@ PROGRESSION_NAME_TO_ID = {
 
 MISC_NAME_TO_ID = {
     "Talisman Slot": 8,
-    "10 Eyetems": 9
+    "10 Eyetems": 9,
+    "Item Arrow": 4,
+    "Checkpoint": 3,
 }
 
 TALISMAN_NAME_TO_ID = {
@@ -240,7 +240,9 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     **{name: ItemClassification.useful for name in TALISMAN_NAME_TO_ID},
     **{name: ItemClassification.filler for name in OUTFIT_NAME_TO_ID},
     "Talisman Slot": ItemClassification.useful,
-    "10 Eyetems": ItemClassification.filler
+    "10 Eyetems": ItemClassification.filler,
+    "Item Arrow": ItemClassification.useful,
+    "Checkpoint": ItemClassification.useful,
 }
 
 
@@ -264,7 +266,30 @@ def create_all_items(world: DemonTidesWorld) -> None:
 
 
     itempool = []
-    itempool += [world.create_item(name) for name in PROGRESSION_NAME_TO_ID]
+
+    match world.options.starting_abilities.value:
+        case world.options.starting_abilities.option_all:
+            for name in PROGRESSION_NAME_TO_ID:
+                starting_item = world.create_item(name)
+                world.push_precollected(starting_item)
+            starting_item = world.create_item("Item Arrow")
+            world.push_precollected(starting_item)
+            starting_item = world.create_item("Checkpoint")
+            world.push_precollected(starting_item)
+
+        case world.options.starting_abilities.option_no_progression:
+            itempool += [world.create_item(name) for name in PROGRESSION_NAME_TO_ID]
+
+            starting_item = world.create_item("Item Arrow")
+            world.push_precollected(starting_item)
+            starting_item = world.create_item("Checkpoint")
+            world.push_precollected(starting_item)
+
+        case world.options.starting_abilities.option_none:
+            itempool += [world.create_item(name) for name in PROGRESSION_NAME_TO_ID]
+            itempool += ["Item Arrow", "Checkpoint"]
+
+
     itempool += [world.create_item(name) for name in TALISMAN_NAME_TO_ID]
     itempool += ["Talisman Slot" for _ in range(3)]
     itempool += ["Golden Gear" for _ in range(45)]
@@ -279,3 +304,4 @@ def create_all_items(world: DemonTidesWorld) -> None:
     for name in OUTFIT_NAME_TO_ID:
         starting_outfit_item = world.create_item(name)
         world.push_precollected(starting_outfit_item)
+
