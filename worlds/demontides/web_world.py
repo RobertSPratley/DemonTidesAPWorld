@@ -4,7 +4,7 @@ from worlds.AutoWorld import WebWorld
 
 
 class DemonTidesWebWorld(WebWorld):
-    game = "DemonTides"
+    game = "Demon Tides"
 
     theme = "partyTime"
 

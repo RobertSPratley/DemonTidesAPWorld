@@ -287,12 +287,12 @@ def create_all_items(world: DemonTidesWorld) -> None:
 
         case world.options.starting_abilities.option_none:
             itempool += [world.create_item(name) for name in PROGRESSION_NAME_TO_ID]
-            itempool += ["Item Arrow", "Checkpoint"]
+            itempool += [world.create_item("Item Arrow"), world.create_item("Checkpoint")]
 
 
     itempool += [world.create_item(name) for name in TALISMAN_NAME_TO_ID]
-    itempool += ["Talisman Slot" for _ in range(3)]
-    itempool += ["Golden Gear" for _ in range(45)]
+    itempool += [world.create_item("Talisman Slot") for _ in range(3)]
+    itempool += [world.create_item("Golden Gear") for _ in range(45)]
 
     number_of_items = len(itempool)
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))

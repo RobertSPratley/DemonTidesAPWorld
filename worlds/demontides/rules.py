@@ -409,7 +409,7 @@ def set_all_entrance_rules(world: DemonTidesWorld) -> None:
 
 
 def set_all_location_rules(world: DemonTidesWorld) -> None:
-    for name, logic in LOCATION_LOGIC:
+    for name, logic in LOCATION_LOGIC.items():
         if logic is not None:
             location = world.get_location(name)
             world.set_rule(location, logic)

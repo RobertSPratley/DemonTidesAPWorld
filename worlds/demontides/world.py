@@ -13,7 +13,7 @@ class DemonTidesWorld(World):
     of the way!
     """
 
-    game = "DemonTides"
+    game = "Demon Tides"
 
     web = web_world.DemonTidesWebWorld()
 

@@ -4,7 +4,8 @@ from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 
 class StartingAbilities(Choice):
     """
-    The abilities you will start with, by default you start with none. If you would like to remove CheckPoints and the Item Arrow from the pool select no_progression.
+    The abilities you will start with, by default you start with none.
+    If you would like to remove CheckPoints and the Item Arrow from the pool select no_progression.
     """
 
     display_name = "Starting Abilities"
