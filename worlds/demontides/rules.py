@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, HasAll, Rule
-from ..hk.Options import count
 
 if TYPE_CHECKING:
     from .world import DemonTidesWorld
