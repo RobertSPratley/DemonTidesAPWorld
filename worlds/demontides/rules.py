@@ -88,13 +88,13 @@ LOCATION_LOGIC = {
         None,
 
     "Vindra's Mills Fix Windmill":
-        Has("Snake Form") & Has("Boost"),
+        Has("Snake Form") & Has("Boost") & (Has("Bat Form") | Has("Spin Form")),
 
     "Vindra's Mills Key Chest":
-        None,
+        Has("Snake Form") & Has("Boost"),
 
     "Vindra's Mills Mr. Mint":
-        Has("Bat Form") | Has("Spin Form"),
+        HasAll("Snake Form", "Boost", "Bat Form", "Spin Form"),
 
     "Stiltsville Ruins Rescue Kid":
         None,
